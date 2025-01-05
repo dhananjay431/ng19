@@ -2,7 +2,7 @@
 
 import { Component, computed, effect, signal } from "@angular/core";
 import { HeroService } from "../../hero.service";
-declare var db: any;
+declare var db: any, pdfMake: any;
 @Component({
   selector: "app-main2",
   imports: [],
@@ -11,15 +11,17 @@ declare var db: any;
 })
 export class Main2Component {
   fileData: any = signal({ pdfData: "", scale: 1, rotation: 0 });
+  canvasArr: any = [];
+
   constructor(private hs: HeroService) {
     effect(async () => {
       let that = this;
       let showPdf: any = document.getElementById("showPdf");
       showPdf.innerHTML = "";
-      let res1 = await that.hs.pdf(this.fileData());
-      for (let i = 0; i < res1.length; i++) {
-        let res2 = await res1[i];
-        showPdf?.appendChild(res2.canvas);
+      let res2: any = await that.hs.pdf(this.fileData());
+      console.log("res2=>", res2);
+      for (let i = 0; i < res2.pdfs.length; i++) {
+        showPdf?.appendChild(res2.pdfs[i].canvas);
       }
     });
   }
