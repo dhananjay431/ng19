@@ -1,0 +1,38 @@
+<!-- @format -->
+
+<div class="row">
+  <div class="col-4">
+    <label for="formFileLg" class="form-label">Large file input example</label>
+    <input
+      class="form-control form-control-lg"
+      id="formFileLg"
+      type="file"
+      (change)="file($event)"
+    />
+  </div>
+  <div class="col-4">
+    <label for="customRange1" class="form-label">scale</label>
+    <input
+      type="range"
+      class="form-range"
+      min="0.5"
+      max="2"
+      step="0.1"
+      id="customRange1"
+      (change)="rng($event, 'scale')"
+    />
+  </div>
+  <div class="col-4">
+    <label for="customRange2" class="form-label">rotation</label>
+    <input
+      type="range"
+      class="form-range"
+      min="0"
+      max="360"
+      step="90"
+      id="customRange2"
+      (change)="rng($event, 'rotation')"
+    />
+  </div>
+  <div class="col-12 text-center" id="showPdf"></div>
+</div>
